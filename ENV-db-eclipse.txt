@@ -1,0 +1,28 @@
+static Connection conn = null;
+	
+	private GetConnection()  {
+		
+	}
+	
+	public static Connection GetConnection()  {
+		if(conn!=null) {
+			return conn;
+		}else {
+			try {
+				String dbDriver=System.getenv("dbDriver");
+				String connectionUrl=System.getenv("dbConnectionUrl");
+				String username=System.getenv("dbUsername");
+				String password=System.getenv("dbPassword");
+				Class.forName(dbDriver).newInstance();		
+				conn=DriverManager.getConnection(connectionUrl,username,password);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return conn;
+		}
+		
+		
+		
+		
+		
+}
